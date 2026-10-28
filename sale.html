@@ -1,32 +1,398 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>셀렉트마켓 · 이번 주 특가</title>
-<style>
-  body { margin: 0; font-family: sans-serif; color: #172033; background: #f5f7fb; }
-  header, main, footer { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
-  h1 { font-size: 32px; margin: 8px 0; }
-  .card { background: #fff; border: 1px solid #dfe4ed; border-radius: 12px; padding: 16px; margin: 12px 0; }
-  .price { color: #2457f5; font-weight: 700; }
-  footer { color: #657086; font-size: 13px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>셀렉트마켓 · 이번 주 특가</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --line: #e7edf7;
+      --text: #1b2432;
+      --muted: #707d94;
+      --primary: #2b5df5;
+      --primary-soft: #eef3ff;
+      --accent: #ff7a59;
+      --shadow: 0 16px 32px rgba(20, 37, 68, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Apple SD Gothic Neo", sans-serif;
+      background: linear-gradient(180deg, #eef3ff 0%, #f5f7fb 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 18px 52px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #14213d 0%, #1f2c5a 48%, #2b5df5 100%);
+      color: #fff;
+      border-radius: 28px;
+      padding: 28px 24px 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      bottom: -34px;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .brand {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+    }
+
+    .count-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .count-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #5ee4a4;
+      box-shadow: 0 0 10px rgba(94, 228, 164, 0.8);
+    }
+
+    .list {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .thumb {
+      width: 120px;
+      height: 96px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #dfe9ff 0%, #eef3ff 50%, #d4e0ff 100%);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #dfe7fb;
+    }
+
+    .thumb::before,
+    .thumb::after {
+      content: "";
+      position: absolute;
+      background: rgba(43, 93, 245, 0.12);
+      border-radius: 12px;
+    }
+
+    .mouse::before {
+      width: 72px;
+      height: 42px;
+      left: 24px;
+      top: 28px;
+      border-radius: 28px 28px 18px 18px;
+    }
+
+    .mouse::after {
+      width: 70px;
+      height: 12px;
+      left: 25px;
+      top: 36px;
+      background: rgba(43, 93, 245, 0.18);
+    }
+
+    .stand::before {
+      width: 56px;
+      height: 56px;
+      left: 32px;
+      top: 20px;
+      border-radius: 10px;
+    }
+
+    .stand::after {
+      width: 72px;
+      height: 10px;
+      left: 24px;
+      bottom: 22px;
+      border-radius: 8px;
+    }
+
+    .charger::before {
+      width: 58px;
+      height: 42px;
+      left: 31px;
+      top: 28px;
+      border-radius: 12px;
+    }
+
+    .charger::after {
+      width: 18px;
+      height: 18px;
+      left: 51px;
+      top: 39px;
+      background: rgba(43, 93, 245, 0.3);
+      border-radius: 50%;
+    }
+
+    .speaker::before {
+      width: 60px;
+      height: 52px;
+      left: 30px;
+      top: 22px;
+      border-radius: 18px 18px 12px 12px;
+    }
+
+    .speaker::after {
+      width: 18px;
+      height: 18px;
+      left: 51px;
+      top: 34px;
+      border-radius: 50%;
+      background: rgba(43, 93, 245, 0.25);
+      box-shadow: -18px 0 0 rgba(43, 93, 245, 0.18), 18px 0 0 rgba(43, 93, 245, 0.18);
+    }
+
+    .keyboard::before {
+      width: 72px;
+      height: 42px;
+      left: 24px;
+      top: 28px;
+      border-radius: 12px;
+    }
+
+    .keyboard::after {
+      width: 60px;
+      height: 12px;
+      left: 30px;
+      top: 45px;
+      background: rgba(43, 93, 245, 0.2);
+      box-shadow: 0 16px 0 rgba(43, 93, 245, 0.08);
+    }
+
+    .info {
+      min-width: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 10px 0 6px;
+      letter-spacing: -0.03em;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .price-box {
+      text-align: right;
+      min-width: 110px;
+    }
+
+    .old-price {
+      display: block;
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .price {
+      display: block;
+      color: var(--primary);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .price small {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cta {
+      display: block;
+      margin-top: 26px;
+      background: linear-gradient(135deg, #ff8b4d 0%, #ff6b5f 100%);
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(255, 121, 92, 0.28);
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        grid-template-columns: 96px 1fr;
+      }
+
+      .thumb {
+        width: 96px;
+        height: 88px;
+      }
+
+      .price-box {
+        grid-column: 2;
+        text-align: left;
+        min-width: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <p>셀렉트마켓</p>
-  <h1>이번 주 특가 5가지</h1>
-</header>
-<main>
-  <article class="card"><h2>무선 마우스</h2><p class="price">19,000원</p></article>
-  <article class="card"><h2>노트북 거치대</h2><p class="price">25,000원</p></article>
-  <article class="card"><h2>USB-C 충전기</h2><p class="price">15,000원</p></article>
-  <article class="card"><h2>블루투스 스피커</h2><p class="price">29,000원</p></article>
-  <article class="card"><h2>게이밍 키보드</h2><p class="price">35,000원</p></article>
-</main>
-<footer>
-  <p>고객센터 평일 10:00–17:00</p>
-</footer>
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">SELECT MARKET</div>
+      <h1>이번 주 특가 5가지</h1>
+      <div class="subtitle">한정수량 · 오늘만 더 저렴하게</div>
+      <div class="count-badge"><span class="dot"></span> 빠르게 구매하세요</div>
+    </header>
+
+    <main class="list">
+      <article class="card">
+        <div class="thumb mouse"></div>
+        <div class="info">
+          <span class="tag">특가</span>
+          <h2>무선 마우스</h2>
+          <p class="meta">무소음 클릭 · 30일 체험</p>
+        </div>
+        <div class="price-box">
+          <span class="old-price">29,000원</span>
+          <span class="price">19,000<small>원</small></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb stand"></div>
+        <div class="info">
+          <span class="tag">특가</span>
+          <h2>노트북 거치대</h2>
+          <p class="meta">알루미늄 프레임 · 높이조절</p>
+        </div>
+        <div class="price-box">
+          <span class="old-price">39,000원</span>
+          <span class="price">25,000<small>원</small></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb charger"></div>
+        <div class="info">
+          <span class="tag">특가</span>
+          <h2>USB-C 충전기</h2>
+          <p class="meta">65W 고속 충전 · 2포트</p>
+        </div>
+        <div class="price-box">
+          <span class="old-price">22,000원</span>
+          <span class="price">15,000<small>원</small></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb speaker"></div>
+        <div class="info">
+          <span class="tag">특가</span>
+          <h2>블루투스 스피커</h2>
+          <p class="meta">방수 디자인 · 12시간 배터리</p>
+        </div>
+        <div class="price-box">
+          <span class="old-price">49,000원</span>
+          <span class="price">29,000<small>원</small></span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb keyboard"></div>
+        <div class="info">
+          <span class="tag">특가</span>
+          <h2>게이밍 키보드</h2>
+          <p class="meta">기계식 · 백라이트 포함</p>
+        </div>
+        <div class="price-box">
+          <span class="old-price">59,000원</span>
+          <span class="price">35,000<small>원</small></span>
+        </div>
+      </article>
+    </main>
+
+    <button class="cta">오늘의 특가 보러가기</button>
+
+    <footer>
+      고객센터 평일 10:00–17:00 · 무료배송 조건 충족 시 바로 발송
+    </footer>
+  </div>
 </body>
 </html>
