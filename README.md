@@ -1,2 +1,2 @@
-# multicampus_K_Digital_AI_PM
-multicampus_K_Digital_AI_PM
+# Multicampus_K_Digital_AI_PM
+Multicampus_K_Digital_AI_PM
