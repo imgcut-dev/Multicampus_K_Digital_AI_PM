@@ -27,7 +27,7 @@
     }
 
     .wrap {
-      max-width: 760px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 28px 18px 52px;
     }
@@ -97,32 +97,57 @@
       box-shadow: 0 0 10px rgba(94, 228, 164, 0.8);
     }
 
-    .list {
+    .table-wrap {
       margin-top: 24px;
-      display: grid;
-      gap: 16px;
-    }
-
-    .card {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 22px;
       box-shadow: var(--shadow);
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 120px 1fr auto;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: #f7f9ff;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    tbody td {
+      padding: 18px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .product {
+      display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .thumb {
-      width: 120px;
-      height: 96px;
-      border-radius: 18px;
+      width: 86px;
+      height: 72px;
+      border-radius: 16px;
       background: linear-gradient(135deg, #dfe9ff 0%, #eef3ff 50%, #d4e0ff 100%);
       position: relative;
       overflow: hidden;
       border: 1px solid #dfe7fb;
+      flex-shrink: 0;
     }
 
     .thumb::before,
@@ -134,91 +159,98 @@
     }
 
     .mouse::before {
-      width: 72px;
-      height: 42px;
-      left: 24px;
-      top: 28px;
+      width: 56px;
+      height: 34px;
+      left: 15px;
+      top: 20px;
       border-radius: 28px 28px 18px 18px;
     }
 
     .mouse::after {
-      width: 70px;
-      height: 12px;
-      left: 25px;
-      top: 36px;
+      width: 52px;
+      height: 10px;
+      left: 17px;
+      top: 26px;
       background: rgba(43, 93, 245, 0.18);
     }
 
     .stand::before {
-      width: 56px;
-      height: 56px;
-      left: 32px;
-      top: 20px;
+      width: 42px;
+      height: 42px;
+      left: 22px;
+      top: 14px;
       border-radius: 10px;
     }
 
     .stand::after {
-      width: 72px;
-      height: 10px;
-      left: 24px;
-      bottom: 22px;
+      width: 56px;
+      height: 8px;
+      left: 15px;
+      bottom: 16px;
       border-radius: 8px;
     }
 
     .charger::before {
-      width: 58px;
-      height: 42px;
-      left: 31px;
-      top: 28px;
+      width: 48px;
+      height: 30px;
+      left: 19px;
+      top: 20px;
       border-radius: 12px;
     }
 
     .charger::after {
-      width: 18px;
-      height: 18px;
-      left: 51px;
-      top: 39px;
+      width: 14px;
+      height: 14px;
+      left: 36px;
+      top: 28px;
       background: rgba(43, 93, 245, 0.3);
       border-radius: 50%;
     }
 
     .speaker::before {
-      width: 60px;
-      height: 52px;
-      left: 30px;
-      top: 22px;
+      width: 46px;
+      height: 40px;
+      left: 20px;
+      top: 16px;
       border-radius: 18px 18px 12px 12px;
     }
 
     .speaker::after {
-      width: 18px;
-      height: 18px;
-      left: 51px;
-      top: 34px;
+      width: 14px;
+      height: 14px;
+      left: 36px;
+      top: 24px;
       border-radius: 50%;
       background: rgba(43, 93, 245, 0.25);
-      box-shadow: -18px 0 0 rgba(43, 93, 245, 0.18), 18px 0 0 rgba(43, 93, 245, 0.18);
+      box-shadow: -14px 0 0 rgba(43, 93, 245, 0.18), 14px 0 0 rgba(43, 93, 245, 0.18);
     }
 
     .keyboard::before {
-      width: 72px;
-      height: 42px;
-      left: 24px;
-      top: 28px;
+      width: 58px;
+      height: 30px;
+      left: 14px;
+      top: 22px;
       border-radius: 12px;
     }
 
     .keyboard::after {
-      width: 60px;
-      height: 12px;
-      left: 30px;
-      top: 45px;
+      width: 48px;
+      height: 10px;
+      left: 19px;
+      top: 33px;
       background: rgba(43, 93, 245, 0.2);
-      box-shadow: 0 16px 0 rgba(43, 93, 245, 0.08);
+      box-shadow: 0 12px 0 rgba(43, 93, 245, 0.08);
     }
 
-    .info {
-      min-width: 0;
+    .name {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .desc {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .tag {
@@ -230,23 +262,12 @@
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.03em;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin: 10px 0 6px;
-      letter-spacing: -0.03em;
-    }
-
-    .meta {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0;
+      margin-right: 8px;
     }
 
     .price-box {
       text-align: right;
-      min-width: 110px;
+      min-width: 120px;
     }
 
     .old-price {
@@ -283,6 +304,7 @@
       font-weight: 700;
       box-shadow: 0 12px 24px rgba(255, 121, 92, 0.28);
       cursor: pointer;
+      width: 100%;
     }
 
     footer {
@@ -294,20 +316,37 @@
       font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      .card {
-        grid-template-columns: 96px 1fr;
+    @media (max-width: 720px) {
+      .wrap {
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
-      .thumb {
-        width: 96px;
-        height: 88px;
+      thead {
+        display: none;
+      }
+
+      table, tbody, tr, td {
+        display: block;
+        width: 100%;
+      }
+
+      tbody tr {
+        padding: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      tbody td {
+        padding: 8px 0;
+        border-bottom: none;
+      }
+
+      .product {
+        align-items: flex-start;
       }
 
       .price-box {
-        grid-column: 2;
         text-align: left;
-        min-width: 0;
       }
     }
   </style>
@@ -321,71 +360,93 @@
       <div class="count-badge"><span class="dot"></span> 빠르게 구매하세요</div>
     </header>
 
-    <main class="list">
-      <article class="card">
-        <div class="thumb mouse"></div>
-        <div class="info">
-          <span class="tag">특가</span>
-          <h2>무선 마우스</h2>
-          <p class="meta">무소음 클릭 · 30일 체험</p>
-        </div>
-        <div class="price-box">
-          <span class="old-price">29,000원</span>
-          <span class="price">19,000<small>원</small></span>
-        </div>
-      </article>
+    <main class="table-wrap">
+      <table aria-label="이번 주 특가 상품 목록">
+        <thead>
+          <tr>
+            <th>상품</th>
+            <th>설명</th>
+            <th>정상가</th>
+            <th>특가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="product">
+                <div class="thumb mouse"></div>
+                <div>
+                  <span class="tag">특가</span>
+                  <p class="name">무선 마우스</p>
+                </div>
+              </div>
+            </td>
+            <td><p class="desc">무소음 클릭 · 30일 체험</p></td>
+            <td><span class="old-price">29,000원</span></td>
+            <td><div class="price-box"><span class="price">19,000<small>원</small></span></div></td>
+          </tr>
 
-      <article class="card">
-        <div class="thumb stand"></div>
-        <div class="info">
-          <span class="tag">특가</span>
-          <h2>노트북 거치대</h2>
-          <p class="meta">알루미늄 프레임 · 높이조절</p>
-        </div>
-        <div class="price-box">
-          <span class="old-price">39,000원</span>
-          <span class="price">25,000<small>원</small></span>
-        </div>
-      </article>
+          <tr>
+            <td>
+              <div class="product">
+                <div class="thumb stand"></div>
+                <div>
+                  <span class="tag">특가</span>
+                  <p class="name">노트북 거치대</p>
+                </div>
+              </div>
+            </td>
+            <td><p class="desc">알루미늄 프레임 · 높이조절</p></td>
+            <td><span class="old-price">39,000원</span></td>
+            <td><div class="price-box"><span class="price">25,000<small>원</small></span></div></td>
+          </tr>
 
-      <article class="card">
-        <div class="thumb charger"></div>
-        <div class="info">
-          <span class="tag">특가</span>
-          <h2>USB-C 충전기</h2>
-          <p class="meta">65W 고속 충전 · 2포트</p>
-        </div>
-        <div class="price-box">
-          <span class="old-price">22,000원</span>
-          <span class="price">15,000<small>원</small></span>
-        </div>
-      </article>
+          <tr>
+            <td>
+              <div class="product">
+                <div class="thumb charger"></div>
+                <div>
+                  <span class="tag">특가</span>
+                  <p class="name">USB-C 충전기</p>
+                </div>
+              </div>
+            </td>
+            <td><p class="desc">65W 고속 충전 · 2포트</p></td>
+            <td><span class="old-price">22,000원</span></td>
+            <td><div class="price-box"><span class="price">15,000<small>원</small></span></div></td>
+          </tr>
 
-      <article class="card">
-        <div class="thumb speaker"></div>
-        <div class="info">
-          <span class="tag">특가</span>
-          <h2>블루투스 스피커</h2>
-          <p class="meta">방수 디자인 · 12시간 배터리</p>
-        </div>
-        <div class="price-box">
-          <span class="old-price">49,000원</span>
-          <span class="price">29,000<small>원</small></span>
-        </div>
-      </article>
+          <tr>
+            <td>
+              <div class="product">
+                <div class="thumb speaker"></div>
+                <div>
+                  <span class="tag">특가</span>
+                  <p class="name">블루투스 스피커</p>
+                </div>
+              </div>
+            </td>
+            <td><p class="desc">방수 디자인 · 12시간 배터리</p></td>
+            <td><span class="old-price">49,000원</span></td>
+            <td><div class="price-box"><span class="price">29,000<small>원</small></span></div></td>
+          </tr>
 
-      <article class="card">
-        <div class="thumb keyboard"></div>
-        <div class="info">
-          <span class="tag">특가</span>
-          <h2>게이밍 키보드</h2>
-          <p class="meta">기계식 · 백라이트 포함</p>
-        </div>
-        <div class="price-box">
-          <span class="old-price">59,000원</span>
-          <span class="price">35,000<small>원</small></span>
-        </div>
-      </article>
+          <tr>
+            <td>
+              <div class="product">
+                <div class="thumb keyboard"></div>
+                <div>
+                  <span class="tag">특가</span>
+                  <p class="name">게이밍 키보드</p>
+                </div>
+              </div>
+            </td>
+            <td><p class="desc">기계식 · 백라이트 포함</p></td>
+            <td><span class="old-price">59,000원</span></td>
+            <td><div class="price-box"><span class="price">35,000<small>원</small></span></div></td>
+          </tr>
+        </tbody>
+      </table>
     </main>
 
     <button class="cta">오늘의 특가 보러가기</button>
